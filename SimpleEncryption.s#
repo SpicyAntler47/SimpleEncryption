@@ -1,0 +1,16 @@
+function caesarCipher(str, shift) {
+    return str.split('').map(char => {
+        if (char.match(/[a-zA-Z]/)) {
+            const base = char.charCodeAt(0) < 97 ? 65 : 97;
+            return String.fromCharCode(((char.charCodeAt(0) - base + shift) % 26) + base);
+        }
+        return char;
+    }).join('');
+}
+
+const message = prompt("Enter a message to encrypt:");
+const encrypted = caesarCipher(message, 3);
+console.log("Encrypted message:", encrypted);
+
+const decrypted = caesarCipher(encrypted, -3);
+console.log("Decrypted message:", decrypted);
